@@ -32,12 +32,29 @@ const Contact: React.FC = () => {
     setIsSubmitting(true)
     
     try {
-      // Replace with your EmailJS service details
+      const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+      const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+      const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+      if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+        console.warn('EmailJS env vars are missing. Please set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY')
+        setSubmitStatus('error')
+        return
+      }
+
+      // Map to your EmailJS template params
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message
+      }
+
       const result = await emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
-        formData,
-        'YOUR_PUBLIC_KEY'
+        SERVICE_ID,
+        TEMPLATE_ID,
+        templateParams,
+        PUBLIC_KEY
       )
       
       if (result.status === 200) {

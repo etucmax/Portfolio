@@ -94,16 +94,15 @@ Update the following files with your information:
 ### EmailJS Setup
 
 1. Sign up at [EmailJS](https://www.emailjs.com/)
-2. Create a service and template
-3. Update the EmailJS configuration in `src/components/Contact.tsx`:
-   ```typescript
-   const result = await emailjs.send(
-     'YOUR_SERVICE_ID',      // Replace with your service ID
-     'YOUR_TEMPLATE_ID',     // Replace with your template ID
-     formData,
-     'YOUR_PUBLIC_KEY'       // Replace with your public key
-   )
+2. Create a service and a template
+3. Create a `.env` file in the project root with:
+   ```env
+   VITE_EMAILJS_SERVICE_ID=your_service_id
+   VITE_EMAILJS_TEMPLATE_ID=your_template_id
+   VITE_EMAILJS_PUBLIC_KEY=your_public_key
    ```
+4. Make sure your template expects these fields: `from_name`, `from_email`, `subject`, `message`
+5. The contact form reads those via `import.meta.env.*` and sends using EmailJS
 
 ### Styling
 

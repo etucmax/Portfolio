@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaTwitter, FaFacebook, FaDownload } from 'react-icons/fa'
 import { HiMail } from 'react-icons/hi'
+import LoadingScreen from './LoadingScreen'
 
 const Hero: React.FC = () => {
   const [imageError, setImageError] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(false)
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -34,6 +36,8 @@ const Hero: React.FC = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center py-8 px-4 sm:px-6 lg:px-8">
+      {/* Loading Overlay shown until image completes load or errors */}
+      <LoadingScreen show={!imageLoaded && !imageError} />
       <div className="max-w-7xl mx-auto w-full">
         <motion.div
           variants={containerVariants}
@@ -50,7 +54,8 @@ const Hero: React.FC = () => {
                     src={`${import.meta.env.BASE_URL}MyPic.jpg`} 
                     alt="Jastrel Acebu" 
                     className="w-full h-full object-cover"
-                    onError={() => setImageError(true)}
+                    onLoad={() => setImageLoaded(true)}
+                    onError={() => { setImageError(true); setImageLoaded(true) }}
                   />
                 ) : (
                   <span className="text-2xl sm:text-4xl font-bold text-primary-600">JA</span>

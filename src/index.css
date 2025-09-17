@@ -15,6 +15,48 @@
   }
 }
 
+/* Loading cat animation */
+.cat-runner {
+  width: 72px;
+  height: 48px;
+  position: relative;
+}
+.cat-runner::before,
+.cat-runner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+/* Simple 2-frame kitty using gradients */
+.cat-runner::before {
+  background-image:
+    radial-gradient(circle 6px at 18px 24px, #111 98%, transparent 100%), /* head */
+    radial-gradient(circle 2px at 26px 18px, #111 98%, transparent 100%),   /* ear */
+    radial-gradient(circle 2px at 26px 30px, #111 98%, transparent 100%),   /* ear */
+    radial-gradient(circle 3px at 14px 24px, #fff 98%, transparent 100%),   /* eye */
+    linear-gradient(#111 0 0) 10px 28px / 20px 10px no-repeat,              /* body */
+    linear-gradient(#111 0 0) 8px 36px / 10px 3px no-repeat,                /* tail */
+    linear-gradient(#111 0 0) 15px 38px / 8px 3px no-repeat,                /* leg */
+    linear-gradient(#111 0 0) 25px 38px / 8px 3px no-repeat;                /* leg */
+  animation: catRun1 0.5s infinite steps(1);
+}
+.cat-runner::after {
+  background-image:
+    radial-gradient(circle 6px at 18px 24px, #111 98%, transparent 100%),
+    radial-gradient(circle 2px at 26px 18px, #111 98%, transparent 100%),
+    radial-gradient(circle 2px at 26px 30px, #111 98%, transparent 100%),
+    radial-gradient(circle 3px at 14px 24px, #fff 98%, transparent 100%),
+    linear-gradient(#111 0 0) 10px 28px / 20px 10px no-repeat,
+    linear-gradient(#111 0 0) 8px 36px / 10px 3px no-repeat,
+    linear-gradient(#111 0 0) 13px 40px / 8px 3px no-repeat,
+    linear-gradient(#111 0 0) 27px 36px / 8px 3px no-repeat;
+  animation: catRun2 0.5s infinite steps(1);
+}
+@keyframes catRun1 { 50% { opacity: 0 } }
+@keyframes catRun2 { 0% { opacity: 0 } 50% { opacity: 1 } }
+
 @layer components {
   .btn-primary {
     @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
