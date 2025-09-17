@@ -1,4 +1,3 @@
-import { Routes, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import Header from './components/Header'
 import Hero from './components/Hero'
@@ -19,17 +18,11 @@ function App() {
       <Header />
       
       <main>
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Hero />
-              <About />
-              <Skills />
-              <Projects />
-              <Contact />
-            </>
-          } />
-        </Routes>
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
       </main>
       
       <Footer />
