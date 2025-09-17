@@ -47,7 +47,7 @@ const Hero: React.FC = () => {
               <div className="w-full h-full rounded-full overflow-hidden bg-gray-200 dark:bg-dark-700 flex items-center justify-center">
                 {!imageError ? (
                   <img 
-                    src="/MyPic.jpg" 
+                    src={`${import.meta.env.BASE_URL}MyPic.jpg`} 
                     alt="Jastrel Acebu" 
                     className="w-full h-full object-cover"
                     onError={() => setImageError(true)}
@@ -85,7 +85,7 @@ const Hero: React.FC = () => {
               View My Work
             </motion.button>
             <motion.a
-              href="/CV2_AcebuJastrel.pdf"
+              href={`${import.meta.env.BASE_URL}CV2_AcebuJastrel.pdf`}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
